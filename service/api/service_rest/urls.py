@@ -1,6 +1,7 @@
-from .models import Technician
 from django.urls import path
 
-# urlpatterns = [
-#     path("technicians/", )
-# ]
+from .views import technicians
+
+urlpatterns = [
+    path("technicians/", technicians, name="create_technician")
+]
