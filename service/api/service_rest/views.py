@@ -29,3 +29,24 @@ def technicians(request):
             return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
         except:
             return JsonResponse({"message": "Invalid Technician"}, status=400)
+
+
+@require_http_methods(["GET", "DELETE"])
+# --- note ---
+# Currently techs are found based on their id in the database
+def technician_details(request, id):
+    # Must first check if our technician exists
+    try:
+        technician = Technician.objects.get(id=id)
+    except Technician.DoesNotExist:
+        return JsonResponse({"message": "Technician does not exist"}, status=400)
+
+    # Getting tech details
+    if request.method == "GET":
+        return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
+
+    # Deleting a tech
+    else:
+        count, _ = Technician.objects.filter(id=id).delete()
+        # returns boolean value based on if a value was deleted
+        return JsonResponse({"deleted": count > 0})
