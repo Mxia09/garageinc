@@ -7,9 +7,11 @@ import json
 from common.json import ModelEncoder
 from .models import Technician
 
-class TechnicianListEncoder(ModelEncoder):
+class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ["first_name", "last_name", "employee_id"]
+
+
 
 @require_http_methods(["GET", "POST"])
 def technicians(request):
@@ -17,8 +19,13 @@ def technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
 
-        return JsonResponse({"technicians": technicians}, encoder=TechnicianListEncoder)
+        return JsonResponse({"technicians": technicians}, encoder=TechnicianEncoder)
     else:
-        # Creating a technician
-        content = json.loads(request.body)
-        pass
+        # Creating a technician via POST request
+        try:
+            content = json.loads(request.body)
+            technician = Technician.objects.create(**content)
+            print(technician)
+            return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
+        except:
+            return JsonResponse({"message": "Invalid Technician"}, status=400)
