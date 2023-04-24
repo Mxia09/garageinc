@@ -5,12 +5,15 @@ import json
 
 # Will be using ModelEncoder from common/json.py
 from common.json import ModelEncoder
-from .models import Technician
+from .models import Technician, Appointment
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ["first_name", "last_name", "employee_id"]
 
+class AppointmentEncoder(ModelEncoder):
+    model = Appointment
+    properties = ["date_time", "reason", "status", "vin", "customer", "technician"]
 
 
 @require_http_methods(["GET", "POST"])
@@ -50,3 +53,8 @@ def technician_details(request, id):
         count, _ = Technician.objects.filter(id=id).delete()
         # returns boolean value based on if a value was deleted
         return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(["GET", "POST"])
+def appointments(request):
+    pass
