@@ -14,6 +14,12 @@ class TechnicianEncoder(ModelEncoder):
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = ["date_time", "reason", "status", "vin", "customer", "technician"]
+    # properties = ["date_time", "reason", "vin", "customer", "technician"]
+
+    encoders = {
+        "technician": TechnicianEncoder(),
+    }
+
 
 
 @require_http_methods(["GET", "POST"])
@@ -65,13 +71,18 @@ def appointments(request):
         return JsonResponse({"appointments": appointments}, encoder=AppointmentEncoder)
     # Create an appointment
     else:
+        content = json.loads(request.body)
         try:
-            content = json.loads(request.body)
-            appointment = Appointment.objects.create(**content)
+            employee_id = content["technician"]
+            technician = Technician.objects.get(employee_id=employee_id)
+            content["technician"] = technician
 
-            return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
-        except:
+        except Technician.DoesNotExist:
             return JsonResponse({"message": "Invalid Appointment"}, status=400)
+
+        appointment = Appointment.objects.create(**content)
+
+        return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
 
 @require_http_methods(["GET", "DELETE"])
 def appointment_details(request, id):

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 export const AppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
+
   useEffect(() => {
     async function getAppointments() {
       const appointmentsUrl = "http://localhost:8080/api/appointments/";
@@ -10,7 +11,6 @@ export const AppointmentList = () => {
         const responseData = await response.json();
         setAppointments(responseData.appointments);
       }
-      console.log(appointments);
     }
     getAppointments();
   }, []);
@@ -26,7 +26,19 @@ export const AppointmentList = () => {
           <th>Reason</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        {appointments.map((appointment) => {
+          return (
+            <tr>
+              <td>{appointment.vin}</td>
+              <td>{appointment.customer}</td>
+              <td>{appointment.date_time}</td>
+              <td>{appointment.technician.first_name}</td>
+              <td>{appointment.reason}</td>
+            </tr>
+          );
+        })}
+      </tbody>
     </table>
   );
 };
