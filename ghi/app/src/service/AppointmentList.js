@@ -15,6 +15,36 @@ export const AppointmentList = () => {
     getAppointments();
   }, []);
 
+  const handleCancel = async (apptId) => {
+    const cancelUrl = `http://localhost:8080/api/appointments/${apptId}/cancel/`;
+
+    const fetchConfig = {
+      method: "put",
+    };
+
+    const response = await fetch(cancelUrl, fetchConfig);
+    if (response.ok) {
+      alert("Appointment Updated!");
+      const appt = await response.json();
+      console.log(appt);
+    }
+  };
+
+  const handleFinish = async (apptId) => {
+    const finishUrl = `http://localhost:8080/api/appointments/${apptId}/finish/`;
+
+    const fetchConfig = {
+      method: "put",
+    };
+
+    const response = await fetch(finishUrl, fetchConfig);
+    if (response.ok) {
+      alert("Appointment Updated!");
+      const appt = await response.json();
+      console.log(appt);
+    }
+  };
+
   return (
     <table className="table table-striped">
       <thead>
@@ -35,6 +65,20 @@ export const AppointmentList = () => {
               <td>{appointment.date_time}</td>
               <td>{appointment.technician.first_name}</td>
               <td>{appointment.reason}</td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleCancel(appointment.id)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => handleFinish(appointment.id)}
+                >
+                  Finish
+                </button>
+              </td>
             </tr>
           );
         })}
