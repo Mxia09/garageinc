@@ -21,8 +21,8 @@ def get_automobiles():
 
     for auto in content["autos"]:
         # add new automobile to our automobile value object
-
         AutomobileVO.objects.update_or_create(import_href = auto["href"], defaults = {"vin": auto["vin"]})
+
 
 def poll():
     while True:
