@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const AppointmentForm = () => {
+  // Declaring our state
+  const [technicians, setTechnicians] = useState([]);
+
+  // Getting data from technicians list
+  useEffect(() => {
+    async function getTechnicians() {
+      const techniciansUrl = "http://localhost:8080/api/technicians/";
+      const response = await fetch(techniciansUrl);
+      if (response.ok) {
+        const responseData = await response.json();
+        setTechnicians(responseData.technicians);
+      }
+    }
+    getTechnicians();
+  }, []);
+
   return (
     <div className="row">
       <div className="col">
