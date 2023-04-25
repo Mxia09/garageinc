@@ -2,7 +2,7 @@
 
 Team:
 
-* Marvin Xia - Sales 
+* Person 1 - Which microservice?
 * Person 2 - Which microservice?
 
 ## Design
