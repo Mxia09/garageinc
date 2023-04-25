@@ -92,5 +92,9 @@ def appointment_details(request, id):
         return JsonResponse({"deleted": count > 0})
 
 @require_http_methods(["PUT"])
-def update_status(request):
-    pass
+def update_appt_status_cancel(request, id):
+    appointment = Appointment.object.get(id=id)
+    appointment["status"] = "canceled"
+    appointment.save()
+
+    return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
