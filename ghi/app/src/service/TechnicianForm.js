@@ -32,6 +32,7 @@ export const TechnicianForm = () => {
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(newTechData), // turn our js object into json string
+      headers: { "Content-Type": "application/json" },
     };
 
     const response = await fetch(createTechUrl, fetchConfig);
@@ -73,7 +74,7 @@ export const TechnicianForm = () => {
             <input
               required
               onChange={changeEmployeeId}
-              type="text"
+              type="number"
               placeholder="Employee ID"
               id="employee-id"
             />
