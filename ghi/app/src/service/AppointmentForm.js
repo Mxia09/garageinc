@@ -54,6 +54,20 @@ export const AppointmentForm = () => {
       customer,
       technician,
     };
+
+    const createAppointmentUrl = "http://localhost:8080/api/appointments/";
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(newAppointmentData),
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const response = await fetch(createAppointmentUrl, fetchConfig);
+    if (response.ok) {
+      alert("New Appointment Created!");
+    }
   };
 
   return (
