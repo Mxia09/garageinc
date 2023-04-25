@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from './MainPage';
-import Nav from './Nav';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./MainPage";
+import Nav from "./Nav";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="technicians"></Route>
         </Routes>
       </div>
     </BrowserRouter>

@@ -14,14 +14,14 @@ from service_rest.models import AutomobileVO
 
 def get_automobiles():
     # Inventory is located at port 8100
-    # response = requests.get("http://inventory-api:8000/api/automobiles/")
+
     response = requests.get("http://inventory-api:8000/api/automobiles/")
 
     content = json.loads(response.content)
-    print("test poller")
 
     for auto in content["autos"]:
         # add new automobile to our automobile value object
+
         AutomobileVO.objects.update_or_create(import_href = auto["href"], defaults = {"vin": auto["vin"]})
 
 def poll():
