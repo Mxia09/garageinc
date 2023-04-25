@@ -28,7 +28,7 @@ def technicians(request):
         try:
             content = json.loads(request.body)
             technician = Technician.objects.create(**content)
-            print(technician)
+
             return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
         except:
             return JsonResponse({"message": "Invalid Technician"}, status=400)
@@ -57,4 +57,40 @@ def technician_details(request, id):
 
 @require_http_methods(["GET", "POST"])
 def appointments(request):
+    # Appointment list
+    if(request.method == "GET"):
+        appointments = Appointment.objects.all()
+
+
+        return JsonResponse({"appointments": appointments}, encoder=AppointmentEncoder)
+    # Create an appointment
+    else:
+        try:
+            content = json.loads(request.body)
+            appointment = Appointment.objects.create(**content)
+
+            return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
+        except:
+            return JsonResponse({"message": "Invalid Appointment"}, status=400)
+
+@require_http_methods(["GET", "DELETE"])
+def appointment_details(request, id):
+    # Check if appointment exists
+    try:
+        appointment = Appointment.objects.get(id=id)
+    except Appointment.DoesNotExist:
+        return JsonResponse({"message": "Appointment does not exist"}, status=400)
+
+    # Appointment Details
+    if request.method == "GET":
+        return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
+
+    # Delete Appointment
+    else:
+        count, _ = Appointment.objects.filter(id=id).delete()
+        # returns boolean value based on if a value was deleted
+        return JsonResponse({"deleted": count > 0})
+
+@require_http_methods(["PUT"]):
+def update_status(request):
     pass
