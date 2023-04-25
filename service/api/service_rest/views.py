@@ -91,6 +91,6 @@ def appointment_details(request, id):
         # returns boolean value based on if a value was deleted
         return JsonResponse({"deleted": count > 0})
 
-@require_http_methods(["PUT"]):
+@require_http_methods(["PUT"])
 def update_status(request):
     pass
