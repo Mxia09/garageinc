@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 export const AutoList = () => {
   const [automobiles, setAutomobiles] = useState([]);
 
+  //   Fetch automobile data
   useEffect(() => {
     const getAutomobiles = async () => {
       const autoUrl = "http://localhost:8100/api/automobiles/";
