@@ -6,15 +6,20 @@ import { TechnicianList } from "./service/TechnicianList";
 import { AppointmentForm } from "./service/AppointmentForm";
 import { AppointmentList } from "./service/AppointmentList";
 import { ServiceHistory } from "./service/ServiceHistory";
+import { AutoList } from "./automobile/AutoList";
 
 function App(props) {
   const technicians = props.techList;
+
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="automobiles">
+            <Route index element={<AutoList />}></Route>
+          </Route>
           <Route path="technicians">
             <Route
               index
