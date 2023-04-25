@@ -12,7 +12,7 @@ class Technician(models.Model):
 class Appointment(models.Model):
     date_time = models.DateTimeField()
     reason = models.TextField()
-    status = models.CharField(max_length=150)
+    status = models.CharField(max_length=150, default="created")
     vin = models.CharField(max_length=150, unique=True)
     customer = models.CharField(max_length=150)
     technician = models.ForeignKey(Technician, related_name="appointment", on_delete=models.CASCADE)
