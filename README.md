@@ -3,7 +3,7 @@
 Team:
 
 - Person 1 - Which microservice?
-  Robbie - Service
+- Robbie - Service
 
 ## Design
 
