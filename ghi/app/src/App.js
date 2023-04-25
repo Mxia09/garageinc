@@ -5,6 +5,7 @@ import { TechnicianForm } from "./service/TechnicianForm";
 import { TechnicianList } from "./service/TechnicianList";
 import { AppointmentForm } from "./service/AppointmentForm";
 import { AppointmentList } from "./service/AppointmentList";
+import { ServiceHistory } from "./service/ServiceHistory";
 
 function App(props) {
   const technicians = props.techList;
@@ -24,6 +25,7 @@ function App(props) {
           <Route path="appointments">
             <Route index element={<AppointmentList />} />
             <Route path="create" element={<AppointmentForm />} />
+            <Route path="history" element={<ServiceHistory />} />
           </Route>
         </Routes>
       </div>

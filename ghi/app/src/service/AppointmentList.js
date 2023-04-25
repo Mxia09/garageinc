@@ -25,8 +25,9 @@ export const AppointmentList = () => {
     const response = await fetch(cancelUrl, fetchConfig);
     if (response.ok) {
       alert("Appointment Updated!");
-      const appt = await response.json();
-      console.log(appt);
+      //   const appt = await response.json();
+      //   setAppointments(appointments.filter((appt) => appt.status === "created"));
+      //   console.log(appointments.filter((appt) => appt.status === "created"));
     }
   };
 
