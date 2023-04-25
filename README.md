@@ -2,7 +2,7 @@
 
 Team:
 
-- Person 1 - Which microservice?
+- Marvin - Sales
 - Robbie - Service
 
 ## How to Run This Project
