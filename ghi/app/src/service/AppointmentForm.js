@@ -5,7 +5,7 @@ export const AppointmentForm = () => {
   const [vin, setVin] = useState("");
   const [customer, setCustomer] = useState("");
   const [dateTime, setDateTime] = useState("");
-  const [technician, setTechnician] = useState([]);
+  const [technician, setTechnician] = useState("");
   const [technicians, setTechnicians] = useState([]);
   const [reason, setReason] = useState([]);
 
