@@ -47,6 +47,15 @@ function Nav() {
                 Create a Service Appointment
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/appointments"
+              >
+                Appointments
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
