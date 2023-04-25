@@ -7,13 +7,24 @@ export const AppointmentForm = () => {
         <h1>Create a Service Appointment</h1>
         <form id="add-tech-form">
           <div>
-            <input required type="date" />
+            <label htmlFor="vin">Automobile VIN</label>
+            <input required type="text" name="vin" />
           </div>
           <div>
-            <input required type="time" />
+            <label htmlFor="customer">Customer</label>
+            <input required type="text" name="customer" />
           </div>
           <div>
-            <input />
+            <label htmlFor="datetime">Date and Time</label>
+            <input required type="datetime-local" name="datetime" />
+          </div>
+          <div>
+            <label htmlFor="technician">Technician</label>
+            <select name="technician" id="technician"></select>
+          </div>
+          <div>
+            <label htmlFor="reason">Reason</label>
+            <input required type="text" name="reason" />
           </div>
           <button className="btn btn-primary">Create</button>
         </form>
