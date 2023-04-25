@@ -5,7 +5,7 @@ import json
 
 # Will be using ModelEncoder from common/json.py
 from common.json import ModelEncoder
-from .models import Technician, Appointment
+from .models import Technician, Appointment, AutomobileVO
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
@@ -104,8 +104,16 @@ def appointment_details(request, id):
 
 @require_http_methods(["PUT"])
 def update_appt_status_cancel(request, id):
-    appointment = Appointment.object.get(id=id)
-    appointment["status"] = "canceled"
+    appointment = Appointment.objects.get(id=id)
+    appointment.status = "canceled"
+    appointment.save()
+
+    return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
+
+@require_http_methods(["PUT"])
+def update_appt_status_finish(request, id):
+    appointment = Appointment.objects.get(id=id)
+    appointment.status = "finished"
     appointment.save()
 
     return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
