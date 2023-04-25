@@ -25,7 +25,11 @@ docker-compose up
 
 NOTE: Our urls follow REST principles for CRUD operations.
 
-### Manufacturer
+### Front End (Port: 3000)
+
+Enter in browser: http://localhost:3000
+
+### Manufacturer (Port: 8100)
 
 - List/Create: http://localhost:8100/api/manufacturers/
 - Get Details/Update/Delete: http://localhost:8100/api/manufacturers/:id/
@@ -40,7 +44,7 @@ NOTE: Our urls follow REST principles for CRUD operations.
 - List/Create: http://localhost:8100/api/automobiles/
 - Get Details/Update/Delete: http://localhost:8100/api/automobiles/:vin/
 
-### Sales
+### Sales (Port: 8090)
 
 #### Salespeople
 
@@ -57,7 +61,7 @@ NOTE: Our urls follow REST principles for CRUD operations.
 - List/Create: http://localhost:8090/api/sales/
 - Get Details/Update/Delete: http://localhost:8090/api/sales/:id
 
-### Service
+### Service (Port: 8080)
 
 #### Technicians
 
