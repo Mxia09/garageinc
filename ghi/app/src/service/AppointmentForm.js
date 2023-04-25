@@ -63,7 +63,7 @@ export const AppointmentForm = () => {
         "Content-type": "application/json",
       },
     };
-    console.log(newAppointmentData);
+
     const response = await fetch(createAppointmentUrl, fetchConfig);
     if (response.ok) {
       alert("New Appointment Created!");
