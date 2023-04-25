@@ -22,9 +22,9 @@ export const TechnicianForm = () => {
     e.preventDefault();
 
     const newTechData = {
-      firstName,
-      lastName,
-      employeeId,
+      first_name: firstName,
+      last_name: lastName,
+      employee_id: employeeId,
     };
 
     // POST request to create a new technician
