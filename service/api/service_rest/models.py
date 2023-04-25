@@ -10,7 +10,8 @@ class Technician(models.Model):
     employee_id = models.PositiveIntegerField(unique=True)
 
 class Appointment(models.Model):
-    date_time = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField()
     reason = models.TextField()
     status = models.CharField(max_length=150)
     vin = models.CharField(max_length=150, unique=True)
