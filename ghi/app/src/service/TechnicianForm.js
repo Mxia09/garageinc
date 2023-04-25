@@ -56,6 +56,7 @@ export const TechnicianForm = () => {
             <input
               required
               onChange={changeFirstName}
+              value={firstName}
               type="text"
               placeholder="First Name"
               id="first-name"
@@ -65,6 +66,7 @@ export const TechnicianForm = () => {
             <input
               required
               onChange={changeLastName}
+              value={lastName}
               type="text"
               placeholder="Last Name"
               id="last-name"
@@ -74,6 +76,7 @@ export const TechnicianForm = () => {
             <input
               required
               onChange={changeEmployeeId}
+              value={employeeId}
               type="number"
               placeholder="Employee ID"
               id="employee-id"
