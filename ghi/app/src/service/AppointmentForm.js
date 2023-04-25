@@ -36,7 +36,16 @@ export const AppointmentForm = () => {
           </div>
           <div>
             <label htmlFor="technician">Technician</label>
-            <select name="technician" id="technician"></select>
+            <select name="technician" id="technician">
+              <option value="">Choose a Technician</option>
+              {technicians.map((tech) => {
+                return (
+                  <option key={tech.id} value={tech.employee_id}>
+                    {tech.first_name}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           <div>
             <label htmlFor="reason">Reason</label>
