@@ -42,7 +42,6 @@ export const AppointmentList = () => {
     const response = await fetch(finishUrl, fetchConfig);
     if (response.ok) {
       alert("Appointment Updated!");
-      const appt = await response.json();
       setAppointments(appointments.filter((appt) => appt.status === "created"));
     }
   };
@@ -58,6 +57,7 @@ export const AppointmentList = () => {
         <thead>
           <tr>
             <th>VIN</th>
+            <th>Is VIP?</th>
             <th>Customer</th>
             <th>Date + time</th>
             <th>Technician</th>
@@ -67,8 +67,9 @@ export const AppointmentList = () => {
         <tbody>
           {appointments.map((appointment) => {
             return (
-              <tr>
+              <tr key={appointment.id}>
                 <td>{appointment.vin}</td>
+                <td>{appointment.is_vip ? "Yes" : "No"}</td>
                 <td>{appointment.customer}</td>
                 <td>{appointment.date_time}</td>
                 <td>{appointment.technician.first_name}</td>

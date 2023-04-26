@@ -21,6 +21,60 @@ docker-compose up
 6. Voila! Your project is up and running! Refer to `http://localhost:3000` to view the running front-end.
 7. To use CRUD operations on the database via the api, please refer to the following section on ports and urls
 
+## Ports/URLs
+
+NOTE: Our urls follow REST principles for CRUD operations.
+
+### Front End (Port: 3000)
+
+Enter in browser: http://localhost:3000
+
+### Manufacturer (Port: 8100)
+
+- List/Create: http://localhost:8100/api/manufacturers/
+- Get Details/Update/Delete: http://localhost:8100/api/manufacturers/:id/
+
+### Vehicle models
+
+- List/Create: http://localhost:8100/api/models/
+- Get Details/Update/Delete: http://localhost:8100/api/models/:id/
+
+### Automobiles
+
+- List/Create: http://localhost:8100/api/automobiles/
+- Get Details/Update/Delete: http://localhost:8100/api/automobiles/:vin/
+
+### Sales (Port: 8090)
+
+#### Salespeople
+
+- List/Create: http://localhost:8090/api/salespeople/
+- Get Details/Update/Delete: http://localhost:8090/api/salespeople/:id
+
+#### Customer
+
+- List/Create: http://localhost:8090/api/customers/
+- Get Details/Update/Delete: http://localhost:8090/api/customers/:id
+
+#### Sales
+
+- List/Create: http://localhost:8090/api/sales/
+- Get Details/Update/Delete: http://localhost:8090/api/sales/:id
+
+### Service (Port: 8080)
+
+#### Technicians
+
+- List/Create: http://localhost:8080/api/technicians/
+- Get Details/Update/Delete: http://localhost:8080/api/technicians/:id
+
+#### Appointments
+
+- List/Create: http://localhost:8080/api/appointments/
+- Get Details/Update/Delete: http://localhost:8080/api/appointments//:id
+- Set Appointment Status to Cancel: http://localhost:8080/api/appointments/:id/cancel
+- Set Appointment Status to Finish: http://localhost:8080/api/appointments/:id/finish
+
 ## Design
 
 ## Service microservice

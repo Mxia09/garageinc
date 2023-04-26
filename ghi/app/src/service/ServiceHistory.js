@@ -59,7 +59,7 @@ export const ServiceHistory = () => {
         <tbody>
           {/* Returning a row for each technician in our tech list */}
           {appointments.map((appt) => (
-            <tr>
+            <tr key={appt.id}>
               <td>{appt.vin}</td>
               <td></td>
               <td>{appt.customer}</td>
