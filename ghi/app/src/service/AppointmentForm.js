@@ -68,6 +68,12 @@ export const AppointmentForm = () => {
     if (response.ok) {
       alert("New Appointment Created!");
     }
+
+    setVin("");
+    setCustomer("");
+    setDateTime("");
+    setTechnician("");
+    setReason("");
   };
 
   return (
@@ -116,7 +122,7 @@ export const AppointmentForm = () => {
               <option value="">Choose a Technician</option>
               {technicians.map((tech) => {
                 return (
-                  <option key={tech.id} value={tech.employee_id}>
+                  <option key={tech.employee_id} value={tech.employee_id}>
                     {tech.first_name}
                   </option>
                 );
