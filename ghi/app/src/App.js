@@ -15,8 +15,7 @@ import { AppointmentList } from "./service/AppointmentList";
 import { ServiceHistory } from "./service/ServiceHistory";
 import { AutoList } from "./automobile/AutoList";
 import { AutoForm } from "./automobile/AutoForm";
-
-
+import { ModelList } from "./models/ModelList";
 
 function App(props) {
   const technicians = props.techList;
@@ -50,6 +49,7 @@ function App(props) {
           <Route path="manufacturers/" element={<ManufacturerList />} />
           <Route path="manufacturers/create" element={<ManufacturerForm />} />
           <Route path="models/create" element={<ModelForm />} />
+          <Route path="models" element={<ModelList />} />
         </Routes>
       </div>
     </BrowserRouter>
