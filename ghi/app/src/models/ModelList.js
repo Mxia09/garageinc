@@ -33,7 +33,7 @@ export const ModelList = () => {
                 <td>{model.name}</td>
                 <td>{model.manufacturer.name}</td>
                 <td>
-                  <img src={model.picture_url} alt="Car Picture" />
+                  <img src={model.picture_url} alt="Car" />
                 </td>
               </tr>
             );

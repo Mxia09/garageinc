@@ -18,8 +18,6 @@ import { AutoForm } from "./automobile/AutoForm";
 import { ModelList } from "./models/ModelList";
 
 function App(props) {
-  const technicians = props.techList;
-
   return (
     <BrowserRouter>
       <Nav />
@@ -31,10 +29,7 @@ function App(props) {
             <Route path="create" element={<AutoForm />}></Route>
           </Route>
           <Route path="technicians">
-            <Route
-              index
-              element={<TechnicianList technicians={technicians} />}
-            />
+            <Route index element={<TechnicianList />} />
             <Route path="create" element={<TechnicianForm />} />
           </Route>
           <Route path="appointments">
