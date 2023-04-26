@@ -8,7 +8,7 @@ export default function SalesPersonList() {
         const response = await fetch("http://localhost:8090/api/salespeople/");
         if (response.ok) {
             const data = await response.json();
-            setSalesPerson(data.salesperson)
+            setSalesPerson(data.salespeople)
         }
     }
 
@@ -29,16 +29,17 @@ export default function SalesPersonList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {salesperson.map(salesperson => {
+                    {salesperson.map((salespersonData) => {
                         return (
-                            <tr key={salesperson.employeeid}>
-                                <td>{ salesperson.first_name }</td>
-                                <td>{ salesperson.last_name }</td>
+                            <tr key={salespersonData.id}>
+                                <td>{ salespersonData.employee_id }</td>
+                                <td>{ salespersonData.first_name }</td>
+                                <td>{ salespersonData.last_name }</td>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
