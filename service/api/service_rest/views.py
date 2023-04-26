@@ -19,6 +19,12 @@ class AppointmentEncoder(ModelEncoder):
         "technician": TechnicianEncoder(),
     }
 
+    def get_extra_data(self, o):
+    #     # We can use .filter to determine if the appointment car vin is in the list of automobiles
+        # If so, the customer is a VIP member
+        count = AutomobileVO.objects.filter(vin=o.vin).count()
+        return {"is_vip": count > 0}
+
 
 
 @require_http_methods(["GET", "POST"])
