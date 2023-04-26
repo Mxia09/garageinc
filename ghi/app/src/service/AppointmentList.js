@@ -67,7 +67,7 @@ export const AppointmentList = () => {
         <tbody>
           {appointments.map((appointment) => {
             return (
-              <tr>
+              <tr key={appointment.id}>
                 <td>{appointment.vin}</td>
                 <td>{appointment.customer}</td>
                 <td>{appointment.date_time}</td>

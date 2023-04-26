@@ -33,7 +33,7 @@ export const AutoList = () => {
         <tbody>
           {automobiles.map((auto) => {
             return (
-              <tr>
+              <tr key={auto.id}>
                 <td>{auto.vin}</td>
                 <td>{auto.color}</td>
                 <td>{auto.year}</td>
