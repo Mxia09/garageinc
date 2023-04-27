@@ -18,12 +18,9 @@ import { AppointmentList } from "./service/AppointmentList";
 import { ServiceHistory } from "./service/ServiceHistory";
 import { AutoList } from "./automobile/AutoList";
 import { AutoForm } from "./automobile/AutoForm";
-
-
+import { ModelList } from "./models/ModelList";
 
 function App(props) {
-  const technicians = props.techList;
-
   return (
     <BrowserRouter>
       <Nav />
@@ -35,10 +32,7 @@ function App(props) {
             <Route path="create" element={<AutoForm />}></Route>
           </Route>
           <Route path="technicians">
-            <Route
-              index
-              element={<TechnicianList technicians={technicians} />}
-            />
+            <Route index element={<TechnicianList />} />
             <Route path="create" element={<TechnicianForm />} />
           </Route>
           <Route path="appointments">
@@ -53,9 +47,13 @@ function App(props) {
           <Route path="manufacturers/" element={<ManufacturerList />} />
           <Route path="manufacturers/create" element={<ManufacturerForm />} />
           <Route path="models/create" element={<ModelForm />} />
+<<<<<<< HEAD
           <Route path="sales/" element={<SalesList />} />
           <Route path="sales/create" element={<SalesForm />} />
           <Route path="sales/history" element={<SalesHistory />} />
+=======
+          <Route path="models" element={<ModelList />} />
+>>>>>>> refs/remotes/origin/main
         </Routes>
       </div>
     </BrowserRouter>

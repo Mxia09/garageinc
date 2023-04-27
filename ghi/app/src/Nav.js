@@ -28,8 +28,8 @@ function Nav() {
               >
                 Manufacturers
               </NavLink>
-              </li>
-              <li className="nav-item">
+            </li>
+            <li className="nav-item">
               <NavLink
                 className="nav-link active"
                 aria-current="page"
@@ -37,8 +37,8 @@ function Nav() {
               >
                 Create a Manufacturer
               </NavLink>
-              </li>
-              <li className="nav-item">
+            </li>
+            <li className="nav-item">
               <NavLink
                 className="nav-link active"
                 aria-current="page"
@@ -46,8 +46,17 @@ function Nav() {
               >
                 Create a Model
               </NavLink>
-              </li>
-              <li className="nav-item">
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/models"
+              >
+                Car Models
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink
                 className="nav-link active"
                 aria-current="page"
@@ -136,8 +145,8 @@ function Nav() {
               >
                 Customers
               </NavLink>
-              </li>
-              <li className="nav-item">
+            </li>
+            <li className="nav-item">
               <NavLink
                 className="nav-link active"
                 aria-current="page"

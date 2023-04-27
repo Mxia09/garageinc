@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export const TechnicianList = ({ technicians }) => {
+export const TechnicianList = () => {
+  const [technicians, setTechnicians] = useState([]);
+
+  useEffect(() => {
+    const getTechnicians = async () => {
+      const techUrl = "http://localhost:8080/api/technicians/";
+      const response = await fetch(techUrl);
+
+      if (response.ok) {
+        const techData = await response.json();
+        setTechnicians(techData.technicians);
+      }
+    };
+    getTechnicians();
+  }, []);
+
   return (
     <>
       <h1>Technicians</h1>

@@ -82,6 +82,56 @@ Enter in browser: http://localhost:3000
 Explain your models and integration with the inventory
 microservice, here.
 
+The Service microservice deals with all of the car service functionality on the webpage. We used the django framework to create an api that could provide us data from the database.
+
+In django our **urls.py**, **views.py**, and **models.py** interact with each other to form a working api.
+
+We create **models** to structure our data from the database. The Service microservice consists of three models: **AutomobileVO**, **Technician**, and **Appointment**. We can defining **urls** in **urls.py**, and create view functions that are called when an **http request** is initiated at one of those urls. (URLs are defined in the Ports/URLs section)
+
+The following subsections will describe each model and the role it plays in the microservice
+
+### AutomobileVO
+
+The **AutomobileVO** Model is used to represent the Automobile Model within the **Inventory** microservice. Within it, we define only one property: **vin**, which describes the vin number of a specific automobile.
+
+This model is defined as a **value object** for a couple of reasons:
+
+- Is not defined by an id
+- If we change the vin number, we will also change which automobile the model refers too. For this reason, **AutomobileVO is immutable**
+
+AutomobileVO only plays a small role in the Service microservice in that within appointments, we use the vin number to determine if the customer's car vin matches with a vin stored in inventory. If so, this means the customer has bought the car from this particular dealer and so **the customer is a vip member**
+
+### Technician
+
+The technician model describes all the properties we may have on a technician:
+
+- First Name
+- Last Name
+- Employee ID - a unique number to identify the employee
+
+Within our views we define the following view functions:
+
+- technicians() - Allows us to **list technicians** or **create a new technician**
+- technician_details() - Allows **getting a specific technician's details** and **deleting a specific technician**
+
+### Appointment
+
+The appointment model describes all the properties we may have on a appointment:
+
+- Date + Time of Appointment
+- Appointment Reason
+- Appointment Status - Either created, finished, or canceled
+- VIN of car
+- Customer Name
+- Technician working on the car
+
+Within our views we define the following view functions:
+
+- appointments() - Allows us to **get a list of all appointments** or to **create a new appointment**
+- technician_details() - Allows **getting a specific appointment's details** and **deleting a specific appointment**
+- update_appt_status_cancel() - Sets appointment status to "canceled"
+- update_appt_status_finish() - Sets appointment status to "finished"
+
 ## Sales microservice
 
 Explain your models and integration with the inventory
