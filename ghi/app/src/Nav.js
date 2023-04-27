@@ -146,6 +146,24 @@ function Nav() {
                 Add a Customer
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/sales/"
+              >
+                Sales
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/sales/create"
+              >
+                Sales Form
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

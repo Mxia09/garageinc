@@ -95,8 +95,8 @@ def api_list_customers(request, pk=None):
             response.status_code = 400
             return response
 
-@require_http_methods(["GET", "POST", "DELETE"])
-def api_list_sale(request, pk=None):
+@require_http_methods(["GET", "POST"])
+def api_list_sale(request):
     if request.method == "GET":
         sales = Sale.objects.all()
         return JsonResponse(
@@ -104,37 +104,28 @@ def api_list_sale(request, pk=None):
             encoder=SalesListEncoder,
             safe=False)
     else: 
-        content = json.loads(request.body)
-        try: 
-            automobile = content.get("vin")
-            automobile_id = AutomobileVO.objects.get(id=automobile)
-            salesperson = content.get("salesperson")
-            salesperson_id = Salesperson.objects.get(id=salesperson)
-            customer = content.get("customer")
-            customer_id = Customer.objects.get(id=customer)
-            content["vin"] = automobile_id
-            content["salesperson"] = salesperson_id
-            content["customer"] = customer_id
-        except: 
-            response = JsonResponse({"message": "Error could not find foreign key"})
-            response.status_code = 400
-            return response
-    if request.method == "POST":
-        content = json.loads(request.body)
-        sale = Sale.objects.create(**content)
+        content = json.loads(request.body) 
+    try:
+        salesperson = content["salesperson"] 
+        salesperson = Salesperson.objects.get(first_name=content["salesperson"])
+        content[salesperson]=salesperson
+    except Salesperson.DoesNotExist:
         return JsonResponse(
-            {"sale": sale},
-            encoder=SalesListEncoder,
-            safe=False)
-    if request.method == "DELETE": 
-        try: 
-            count, _ = Sale.objects.filter(id=pk).delete()
-            if count == 0:
-                response = JsonResponse({"message": "Sale not found"})
-                response.status_code = 404
-                return response
-            return JsonResponse ({"deleted": count > 0})
-        except: 
-            response = JsonResponse({"message": "Error deleting Sale"})
-            response.status_code = 400
-            return response
+            {"message": "Salesperson could not be found"}
+            )    
+    try:
+        customer = content["customer"] 
+        customer = Customer.objects.get(id=content["customer"])
+        content[customer]=customer
+    except Customer.DoesNotExist:
+        return JsonResponse(
+            {"message": "Customer could not be found"}
+            )
+    try:
+        automobile = content['automobile'] 
+        automobile = AutomobileVO.objects.get(vin=content["automobile"])
+        content[automobile]=automobile
+    except AutomobileVO.DoesNotExist:
+        return JsonResponse(
+            {"message": "Vin could not be found"}
+            )

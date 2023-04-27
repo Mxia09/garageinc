@@ -5,6 +5,9 @@ import SalesPersonList from "./sales/SalesPersonList";
 import SalesPersonForm from "./sales/SalesPersonForm";
 import CustomersList from "./sales/CustomersList";
 import CustomerForm from "./sales/CustomersForms";
+import SalesList from "./sales/SalesList";
+import SalesForm from "./sales/SalesForms";
+import SalesHistory from "./sales/SalesHistory";
 import ManufacturerList from "./manufacturers/ManufacturerList";
 import ManufacturerForm from "./manufacturers/ManufacturerForm";
 import ModelForm from "./models/ModelForm";
@@ -50,6 +53,9 @@ function App(props) {
           <Route path="manufacturers/" element={<ManufacturerList />} />
           <Route path="manufacturers/create" element={<ManufacturerForm />} />
           <Route path="models/create" element={<ModelForm />} />
+          <Route path="sales/" element={<SalesList />} />
+          <Route path="sales/create" element={<SalesForm />} />
+          <Route path="sales/history" element={<SalesHistory />} />
         </Routes>
       </div>
     </BrowserRouter>
