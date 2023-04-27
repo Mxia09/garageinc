@@ -112,6 +112,23 @@ The technician model describes all the properties we may have on a technician:
 Within our views we define the following view functions:
 
 - technicians() - Allows us to **list technicians** or **create a new technician**
+
+<details>
+<summary>Sample GET Response</summary>
+<br>
+```
+{
+    "technicians": [
+        {
+            "first_name": "Random",
+            "last_name": "Guy",
+            "employee_id": 1111
+        },
+    ]
+}
+```
+</details>
+
 - technician_details() - Allows **getting a specific technician's details** and **deleting a specific technician**
 
 ### Appointment
