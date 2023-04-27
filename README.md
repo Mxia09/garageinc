@@ -34,15 +34,179 @@ Enter in browser: http://localhost:3000
 - List/Create: http://localhost:8100/api/manufacturers/
 - Get Details/Update/Delete: http://localhost:8100/api/manufacturers/:id/
 
+#### Sample GET Response (List Manufacturers)
+
+```
+{
+  "manufacturers": [
+    {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Daimler-Chrysler"
+    }
+  ]
+}
+```
+
+#### Sample POST (Create manufacturer) and PUT (Update manufacturer) Request body
+
+Request shape is the same for both, only manufacturer name is required
+
+```
+{
+  "name": "Chrysler"
+}
+```
+
+#### Sample Response for GET (Get specific manufacturer details), PUT (Update manufacturer), and DELETE (Delete manufacturer)
+
+```
+{
+  "href": "/api/manufacturers/1/",
+  "id": 1,
+  "name": "Chrysler"
+}
+```
+
 ### Vehicle models
 
 - List/Create: http://localhost:8100/api/models/
 - Get Details/Update/Delete: http://localhost:8100/api/models/:id/
 
+#### Sample GET Response (List vehicle models)
+
+```
+{
+  "models": [
+    {
+      "href": "/api/models/1/",
+      "id": 1,
+      "name": "Sebring",
+      "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+      "manufacturer": {
+        "href": "/api/manufacturers/1/",
+        "id": 1,
+        "name": "Daimler-Chrysler"
+      }
+    }
+  ]
+}
+```
+
+#### Sample POST request body (Create vehicle model)
+
+```
+{
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+  "manufacturer_id": 1
+}
+```
+
+#### Sample PUT request body (Update vehicle model)
+
+```
+{
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg"
+}
+```
+
+#### Sample GET (Get specific vehicle model details), POST (Create vehicle model), and PUT (Update vehicle model) Response
+
+```
+{
+  "href": "/api/models/1/",
+  "id": 1,
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+  "manufacturer": {
+    "href": "/api/manufacturers/1/",
+    "id": 1,
+    "name": "Daimler-Chrysler"
+  }
+}
+```
+
 ### Automobiles
 
 - List/Create: http://localhost:8100/api/automobiles/
 - Get Details/Update/Delete: http://localhost:8100/api/automobiles/:vin/
+
+#### Sample GET Response (List automobiles)
+
+```
+{
+  "autos": [
+    {
+      "href": "/api/automobiles/1C3CC5FB2AN120174/",
+      "id": 1,
+      "color": "yellow",
+      "year": 2013,
+      "vin": "1C3CC5FB2AN120174",
+      "model": {
+        "href": "/api/models/1/",
+        "id": 1,
+        "name": "Sebring",
+        "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+        "manufacturer": {
+          "href": "/api/manufacturers/1/",
+          "id": 1,
+          "name": "Daimler-Chrysler"
+        }
+      },
+      "sold": false
+    }
+  ]
+}
+```
+
+#### Sample POST request body (Create automobile)
+
+```
+{
+  "color": "red",
+  "year": 2012,
+  "vin": "1C3CC5FB2AN120174",
+  "model_id": 1
+}
+```
+
+#### Sample GET response (Get specific automobile details)
+
+```
+{
+  "href": "/api/automobiles/1C3CC5FB2AN120174/",
+  "id": 1,
+  "color": "yellow",
+  "year": 2013,
+  "vin": "1C3CC5FB2AN120174",
+  "model": {
+    "href": "/api/models/1/",
+    "id": 1,
+    "name": "Sebring",
+    "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+    "manufacturer": {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Daimler-Chrysler"
+    }
+  },
+  "sold": false
+}
+```
+
+#### Sample PUT Request body + Response (Update automobile)
+
+Request body and Response have same shape
+
+```
+{
+  "color": "red",
+  "year": 2012,
+  "sold": true
+}
+```
 
 ### Sales (Port: 8090)
 
@@ -82,7 +246,7 @@ Enter in browser: http://localhost:3000
 }
 ```
 
-#### Sample POST Request + Response (Create a new technician)
+#### Sample POST Request body + Response (Create a new technician)
 
 Request and response JSON will have the same shape
 
@@ -121,7 +285,7 @@ Will return whether the technician was deleted and if it exists
 - Set Appointment Status to Cancel: http://localhost:8080/api/appointments/:id/cancel
 - Set Appointment Status to Finish: http://localhost:8080/api/appointments/:id/finish
 
-#### Sample GET Response (List Appointments)
+#### Sample GET Response body (List Appointments)
 
 ```
 {
@@ -144,7 +308,7 @@ Will return whether the technician was deleted and if it exists
 }
 ```
 
-#### Sample POST Request (Create a new technician)
+#### Sample POST Request body (Create a new technician)
 
 ```
 {
