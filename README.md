@@ -68,6 +68,52 @@ Enter in browser: http://localhost:3000
 - List/Create: http://localhost:8080/api/technicians/
 - Get Details/Update/Delete: http://localhost:8080/api/technicians/:id
 
+#### Sample GET Response (List technicians)
+
+```
+{
+    "technicians": [
+        {
+            "first_name": "Random",
+            "last_name": "Guy",
+            "employee_id": 1111
+        },
+    ]
+}
+```
+
+#### Sample POST Request + Response (Create a new technician)
+
+Request and response JSON will have the same shape
+
+```
+{
+    "first_name":"John",
+    "last_name": "Doe",
+    "employee_id": 2468
+}
+```
+
+#### Sample GET Response (Get specific technician details)
+
+```
+{
+    "first_name": "Random",
+    "last_name": "Guy",
+    "employee_id": 1111
+}
+```
+
+#### Sample DELETE Response (Delete a technician)
+
+Will return whether the technician was deleted and if it exists
+
+```
+{
+    "deleted": true
+}
+```
+
 #### Appointments
 
 - List/Create: http://localhost:8080/api/appointments/
@@ -75,12 +121,106 @@ Enter in browser: http://localhost:3000
 - Set Appointment Status to Cancel: http://localhost:8080/api/appointments/:id/cancel
 - Set Appointment Status to Finish: http://localhost:8080/api/appointments/:id/finish
 
+#### Sample GET Response (List Appointments)
+
+```
+{
+    "appointments": [
+        {
+            "date_time": "2018-06-07T00:00:00+00:00",
+            "reason": "Paint Scratch",
+            "status": "canceled",
+            "vin": "JI4DA9340NS001069",
+            "customer": "R",
+            "technician": {
+                "first_name": "Random",
+                "last_name": "Guy",
+                "employee_id": 1111
+            },
+            "id": 1,
+            "is_vip": false
+        }
+    ]
+}
+```
+
+#### Sample POST Request (Create a new technician)
+
+```
+{
+    "date_time": "2018-06-07T00:00",
+    "reason": "tire flat",
+    "status": "created",
+    "vin": "JI4DA9340NS001766",
+    "customer": "Robbie",
+    "technician": 1111
+}
+```
+
+#### Sample POST Response (Create a new technician)
+
+```
+{
+    "date_time": "2018-06-07T00:00",
+    "reason": "tire flat",
+    "status": "created",
+    "vin": "JI4DA9340NS001766",
+    "customer": "Robbie",
+    "technician": {
+        "first_name": "Random",
+        "last_name": "Guy",
+        "employee_id": 1111
+    },
+    "id": 8,
+    "is_vip": false
+}
+```
+
+#### Sample PUT Response (Set appointment status: Cancel)
+
+PUT Request is not needed
+
+```
+{
+    "date_time": "2018-06-07T00:00:00+00:00",
+    "reason": "Paint Scratch",
+    "status": "canceled",
+    "vin": "JI4DA9340NS001069",
+    "customer": "R",
+    "technician": {
+        "first_name": "Random",
+        "last_name": "Guy",
+        "employee_id": 1111
+    },
+    "id": 1,
+    "is_vip": false
+}
+```
+
+#### Sample PUT Response (Set appointment status: Finish)
+
+PUT Request is not needed
+
+```
+{
+    "date_time": "2018-06-07T00:00:00+00:00",
+    "reason": "Paint Scratch",
+    "status": "finished",
+    "vin": "JI4DA9340NS001069",
+    "customer": "R",
+    "technician": {
+        "first_name": "Random",
+        "last_name": "Guy",
+        "employee_id": 1111
+    },
+    "id": 1,
+    "is_vip": false
+}
+```
+
 ## Design
 
 ## Service microservice
-
-Explain your models and integration with the inventory
-microservice, here.
 
 The Service microservice deals with all of the car service functionality on the webpage. We used the django framework to create an api that could provide us data from the database.
 
@@ -101,6 +241,8 @@ This model is defined as a **value object** for a couple of reasons:
 
 AutomobileVO only plays a small role in the Service microservice in that within appointments, we use the vin number to determine if the customer's car vin matches with a vin stored in inventory. If so, this means the customer has bought the car from this particular dealer and so **the customer is a vip member**
 
+**(NOTE: Please use a client browser like Insomnia or Postman to send requests and receive responses)**
+
 ### Technician
 
 The technician model describes all the properties we may have on a technician:
@@ -111,23 +253,7 @@ The technician model describes all the properties we may have on a technician:
 
 Within our views we define the following view functions:
 
-- technicians() - Allows us to **list technicians** or **create a new technician**
-
-<details>
-<summary>Sample GET Response</summary>
-<br>
-```
-{
-    "technicians": [
-        {
-            "first_name": "Random",
-            "last_name": "Guy",
-            "employee_id": 1111
-        },
-    ]
-}
-```
-</details>
+- technicians() - Allows us to **list technicians** or **create a new technician**.
 
 - technician_details() - Allows **getting a specific technician's details** and **deleting a specific technician**
 
