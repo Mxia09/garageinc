@@ -47,13 +47,10 @@ function App(props) {
           <Route path="manufacturers/" element={<ManufacturerList />} />
           <Route path="manufacturers/create" element={<ManufacturerForm />} />
           <Route path="models/create" element={<ModelForm />} />
-<<<<<<< HEAD
+          <Route path="models" element={<ModelList />} />
           <Route path="sales/" element={<SalesList />} />
           <Route path="sales/create" element={<SalesForm />} />
           <Route path="sales/history" element={<SalesHistory />} />
-=======
-          <Route path="models" element={<ModelList />} />
->>>>>>> refs/remotes/origin/main
         </Routes>
       </div>
     </BrowserRouter>
