@@ -16,7 +16,7 @@ export const AppointmentList = () => {
       }
     }
     getAppointments();
-  }, []);
+  }, [appointments]);
 
   const handleCancel = async (apptId) => {
     const cancelUrl = `http://localhost:8080/api/appointments/${apptId}/cancel/`;

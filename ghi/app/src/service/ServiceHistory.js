@@ -61,7 +61,7 @@ export const ServiceHistory = () => {
           {appointments.map((appt) => (
             <tr key={appt.id}>
               <td>{appt.vin}</td>
-              <td></td>
+              <td>{appt.is_vip ? "Yes" : "No"}</td>
               <td>{appt.customer}</td>
               <td>{appt.date_time}</td>
               <td>{appt.technician.first_name}</td>

@@ -384,6 +384,11 @@ PUT Request is not needed
 
 ## Design
 
+
+<img src="microservice.png"
+     alt="Microservice image"
+     style="width: 700px;" />
+
 ## Service microservice
 
 The Service microservice deals with all of the car service functionality on the webpage. We used the django framework to create an api that could provide us data from the database.
