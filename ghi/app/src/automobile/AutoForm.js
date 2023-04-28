@@ -38,12 +38,23 @@ export const AutoForm = () => {
     const response = await fetch(createAutomobileUrl, fetchConfig);
     if (response.ok) {
       alert("New Automobile Created!");
+    } else {
+      alert("Invalid  Car: Possible already in inventory");
     }
+
+    setColor("");
+    setYear("");
+    setModel("");
+    setVin("");
   };
   return (
     <div className="row">
       <div className="col">
         <h1>Add an Automobile to Inventory</h1>
+        <p>
+          NOTE: You will not be able to add your car if the VIN already exists
+          in inventory
+        </p>
         <form onSubmit={handleSubmit} id="auto-form">
           <div>
             <input
