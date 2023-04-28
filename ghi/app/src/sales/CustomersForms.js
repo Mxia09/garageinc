@@ -47,7 +47,6 @@ export default function CustomerForm() {
     const response = await fetch(customersURL, fetchConfig);
     if (response.ok) {
       const newCustomers = await response.json();
-      console.log(newCustomers);
       setFirstName("");
       setLastName("");
       setAddress("");

@@ -1,62 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ModelForm() {
   const [name, setName] = useState("");
   const [picture_url, setPicture_url] = useState("");
-  const [manufacturer, setManufacturer] = useState("");
-  const [manufacturers, setManufacturers] = useState([]);
+  const [manufacturer_id, setmanufacturer_id] = useState("");
+  const [manufacturers, setmanufacturers] = useState([]);
 
   const handleName = (event) => {
     const value = event.target.value;
     setName(value);
   };
 
-  const handleManufacturer = (event) => {
-    const value = event.target.value;
-    setManufacturer(value);
-  };
-
-  const handlePicture_url = (event) => {
+  const  handlepicture_url= (event) => {
     const value = event.target.value;
     setPicture_url(value);
   };
 
-  const data = {
-    manufacturer: name,
-    picture_url:picture_url
+  const handlemanufacturer_id = (event) => {
+    const value = event.target.value;
+    setmanufacturer_id(value);
   };
 
-  const modelsURL = "http://localhost:8100/api/models/";
-  const fetchConfig = {
-    method: "post",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const data = {
+    name:name,
+    picture_url: picture_url,
+    manufacturer_id:manufacturer_id
+    }
+
+    const modelsURL = "http://localhost:8100/api/models/";
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch(modelsURL, fetchConfig);
+    if (response.ok) {
+      const newModel = await response.json();
+      console.log(newModel);
+
+      setName("");
+      setPicture_url("");
+      setmanufacturer_id("");
+
+    }
   };
 
   const fetchData = async () => {
-    async function getManufacturers() {
-      const url = "http://localhost:8100/api/manufacturers/";
-      const response = await fetch(url);
-      if (response.ok) {
-          const data = await response.json();
-          setManufacturers(data.manufacturers);
-      }
-    }
-    getManufacturers();
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch(modelsURL, fetchConfig);
+    const url = "http://localhost:8100/api/manufacturers/";
+    const response = await fetch(url);
     if (response.ok) {
-      const newModels = await response.json();
-      console.log(newModels);
-      setName("");
-      setPicture_url("");
-      setManufacturer("");
-
+      const data = await response.json();
+      setmanufacturers(data.manufacturers);
+      console.log(manufacturers)
     }
   };
 
@@ -81,18 +82,17 @@ export default function ModelForm() {
                 </div>
                 <div className="form-floating mb-3">
                   <input
-                    value={picture_url} onChange={handlePicture_url} placeholder="picture_url" required type="text" name="picture_url" id="picture_url" className="form-control"
-                  />
+                    value={picture_url} onChange={handlepicture_url} placeholder="picture_url" required type="text" name="picture_url" id="picture_url" className="form-control"/>
                   <label htmlFor="picture">Picture URL</label>
                 </div>
                 <div className="form-floating mb-3">
                   <select
-                    value={manufacturer} onChange={handleManufacturer} placeholder="Manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-select">
-                  <option value="">Choose a manufacturer</option>
-                  {manufacturers.map((manufacturer) => {
+                    value={manufacturer_id} onChange={handlemanufacturer_id} placeholder="manufacturer_id" required type="text" name="manufacturer_id" id="manufacturer_id" className="form-select">
+                  <option value="">Choose a manufacturer_id</option>
+                  {manufacturers.map((manufacturer_id) => {
                     return(
-                        <option key={manufacturer.id} value={manufacturer.id}>
-                            {manufacturer.name}
+                        <option key={manufacturer_id.id} value={manufacturer_id.id}>
+                            {manufacturer_id.name}
                             </option>
                     );
                 })}

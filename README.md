@@ -441,7 +441,126 @@ Within our views we define the following view functions:
 
 ## Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The sales microservice utilizes and deals with information regarding all administrative work related to sales and record keeping of the dealership. This microservice relies heavily on four specifc model classes: Salesperson, Cuistomer,  AutomobileVO, and Sale that will act as the backbone in which all other class and functions will draw on to perform their given tasks.
 
-The sales microseverice utilizes and deals with all information regarding administrative work in 
+These four models have their own specific features that are improtnant to their own individual functions and are as follows: 
+- Salesperson: refers to a salesperson of the carcar service that contains the fields: first_name, last_name, and employee_id 
+- Customer: refers to a customer of the carcar service that contains the fields: first_name, last_name, phone_number, and address
+- AutomobileVO: a value object that uses a poller to communicate with the inventory microservice to get a vehicle's VINs 
+- Sale - refers to the sale of an automobile with the field price with foriegn keys automobile, customer ,and salesperson 
+
+As with any Django framework these models are referenced and work in conjunction with the views.py functions and the urls.py in order to properly create a functional API in the backend database. 
+
+In the views the following functions work as follows: 
+- api_list_salesperson() works to obtain a list of salespeople within the carcar service as well as create a new employee or delete one in case one is no longer with the service 
+- api_list_customers() list, creates, and deletes any customers with the carcar 
+- api_list_sales() that creates, list, and deletes all sales and references the three relationships of the foreign keys: automobile, customer, and salesperson 
+
+**Salesperson API**
+
+| Action | Method | URL | 
+| ----------- | ----------- |  ----------- |
+| List salespeople	 | GET | http://localhost:8090/api/salespeople/
+ Create a salespeople	|POST |http://localhost:8090/api/salespeople/
+| Delete a specific salespeople	 | DELETE | http://localhost:8090/api/salespeople/:id
+ 
+
+To get a list of salespeople in the GET response the following example json body can be used to create a new salesperson in POST 
+```
+{
+  "first_name": "Test First Name",
+  "last_name": "Test Last Name",
+  "employee_id": 12345,
+	"id": 1
+}
+```
+which will result in the list below:
+```
+{
+	"salespeople": [
+		{
+			"first_name": "Test First Name",
+			"last_name": "Test Last Name",
+			"employee_id": "12345",
+			"id": 1
+		}
+	]
+}
+```
+
+**Customer API**
+
+| Action | Method | URL | 
+| ----------- | ----------- |  ----------- |
+| List customer		 | GET | 	http://localhost:8090/api/customers/
+ Create a customer	|POST |http://localhost:8090/api/customers/
+| Delete a specific customer	 | DELETE | http://localhost:8090/api/customers/:id
+
+To get a list of customers in the GET response the following example json body can be used to create a new salesperson in POST 
+```
+{
+  "first_name": "First ",
+  "last_name": "Last",
+  "phone_number": "123-456-7890",
+	"address": "test address",
+}
+```
+which will result in the list below:
+```
+{
+	"customers": [
+		{
+			"first_name": "First ",
+			"last_name": "Last",
+			"address": "test address",
+			"phone_number": "123-456-7890",
+			"id": 1
+		}
+	]
+}
+```
+
+**Sales API**
+
+| Action | Method | URL | 
+| ----------- | ----------- |  ----------- |
+| List sales			 | GET | http://localhost:8090/api/sales/
+ Create a sale	|POST |http://localhost:8090/api/sales/
+| Delete a sale	 | DELETE | http://localhost:8090/api/sales/:id
+
+To get a list of customers in the GET response the following example json body can be used to create a new salesperson in POST 
+```
+{
+    "salesperson": "Test First",
+    "customer": Test,
+    "automobile": "1C3CC5FBN1223175",
+    "price": 1000
+}
+```
+which will result in the list below:
+```
+{
+	"automobile": {
+		"vin": "1C3CC5FBN1223175",
+		"id": 1
+	},
+	"salesperson": {
+		"first_name": "Test First Name",
+		"last_name": "Test Last Name",
+		"employee_id": "12345",
+		"id": 1
+	},
+	"customer": {
+		"first_name": "First ",
+		"last_name": "Last",
+		"address": "test address",
+		"phone_number": "123-456-7890",
+		"id": 1
+	},
+	"price": 1000,
+	"id": 1
+}
+```
+**diagram**
+
+!(https://excalidraw.com/#room=8f9e8693a9e242669f95,hOmum0IB9FZgWB6PtrlRpA)
