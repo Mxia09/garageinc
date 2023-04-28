@@ -67,6 +67,8 @@ export const AppointmentForm = () => {
     const response = await fetch(createAppointmentUrl, fetchConfig);
     if (response.ok) {
       alert("New Appointment Created!");
+    } else {
+      alert("Car already scheduled");
     }
 
     setVin("");
@@ -80,6 +82,10 @@ export const AppointmentForm = () => {
     <div className="row">
       <div className="col">
         <h1>Create a Service Appointment</h1>
+        <p>
+          NOTE: If your car is already scheduled for an appointment, you will
+          not be able to create a new one
+        </p>
         <form id="add-tech-form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="vin">Automobile VIN</label>

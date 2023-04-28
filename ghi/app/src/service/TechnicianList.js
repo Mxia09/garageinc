@@ -30,7 +30,7 @@ export const TechnicianList = () => {
         <tbody>
           {/* Returning a row for each technician in our tech list */}
           {technicians.map((tech) => (
-            <tr>
+            <tr key={tech.employee_id}>
               <td>{tech.first_name}</td>
               <td>{tech.last_name}</td>
               <td>{tech.employee_id}</td>
