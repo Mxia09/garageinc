@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 export default function SalesForm() {
-  const [automobile, setAutoMobile] = useState("");
+  const [auto, setAuto] = useState("");  
   const [customer, setCustomer] = useState("");
   const [salesPerson, setSalesPerson] = useState("");
   const [price, setPrice] = useState("");
-  const [automobiles, setAutomobiles] = useState([]);
+  const [autos, setAutos] = useState([]);  
   const [customers, setCustomers] = useState([]);
   const [salesPeople, setSalesPeople] = useState([]);
   
-
-  const handleAutoMobile = (event) => {
+  const handleAuto = (event) => {
     const value = event.target.value;
-    setAutoMobile(value);
+    setAuto(value);
   };
   
   const handleSalesPerson = (event) => {
@@ -31,8 +30,8 @@ export default function SalesForm() {
   };
 
   const data = {
-    automobile: automobile,
-    salesPerson: salesPerson,
+    automobile: auto,
+    salesperson : salesPerson,
     customer: customer,
     price: price
   
@@ -50,15 +49,15 @@ export default function SalesForm() {
 
   const fetchData = async () => {
 
-    async function getAutoMobiles() {
+    async function getAutos() {
       const url = "http://localhost:8100/api/automobiles/";
       const response = await fetch(url);
       if (response.ok) {
           const data = await response.json();
-          setAutomobiles(data.results);
+          setAutos(data.autos);
       }
     }
-    getAutoMobiles();
+    getAutos();
 
     async function getSalesPeople() {
       const url = "http://localhost:8090/api/salespeople/";
@@ -84,10 +83,11 @@ export default function SalesForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch(salesURL, fetchConfig);
+    
     if (response.ok) {
       const newSales = await response.json();
       console.log(newSales);
-      setAutoMobile("");
+      setAuto("");
       setSalesPerson("");
       setCustomer("");
       setPrice("");
@@ -108,19 +108,17 @@ export default function SalesForm() {
               <h1>Record a new sales</h1>
               <form onSubmit={handleSubmit} id="create-sales-form">
 
-              <div className="form-floating mb-3">
-                    <select
-                        value={automobile} onChange={handleAutoMobile} placeholder="automobiles" required type="text" name="automobiles" id="automobiles" className="form-select">
+              <div className="mb-3">
+              <select value={auto} onChange={handleAuto} placeholder="vin" name="vin" required id="vin" className="form-select">
                     <option value="">Choose an automobile VIN</option>
-                    {automobiles.map((automobile) => {
-                        return(
-                            <option key={automobile.id} value={automobile.id}>
-                                {automobile.id}
-                                </option>
-                        );
+                    {autos?.map( automobile=>{
+                      return(
+                        <option key={automobile.id} value={automobile.vin}>{automobile.vin}</option>
+                      )
                     })}
-                    </select>
-                    </div>
+                  </select>
+              </div>
+
 
               <div className="form-floating mb-3">
                     <select
@@ -128,7 +126,7 @@ export default function SalesForm() {
                     <option value="">Choose a salesperson</option>
                     {salesPeople.map((salesperson) => {
                         return(
-                            <option key={salesperson.id} value={salesperson.id}>
+                            <option key={salesperson.id} value={salesperson.first_name}>
                                 {salesperson.first_name}
                                 </option>
                         );

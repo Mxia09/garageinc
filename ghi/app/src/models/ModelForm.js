@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 export default function ModelForm() {
-  const [modelName, setModelName] = useState("");
-  const [picture, setPicture] = useState("");
+  const [name, setName] = useState("");
+  const [picture_url, setPicture_url] = useState("");
   const [manufacturer, setManufacturer] = useState("");
   const [manufacturers, setManufacturers] = useState([]);
 
-  const handleModelName = (event) => {
+  const handleName = (event) => {
     const value = event.target.value;
-    setModelName(value);
-  };
-
-  const handlePicture = (event) => {
-    const value = event.target.value;
-    setPicture(value);
+    setName(value);
   };
 
   const handleManufacturer = (event) => {
@@ -21,11 +16,14 @@ export default function ModelForm() {
     setManufacturer(value);
   };
 
+  const handlePicture_url = (event) => {
+    const value = event.target.value;
+    setPicture_url(value);
+  };
 
   const data = {
-    modlet_name: modelName,
-    picture: picture,
-    manufacturer: manufacturer,
+    manufacturer: name,
+    picture_url:picture_url
   };
 
   const modelsURL = "http://localhost:8100/api/models/";
@@ -39,14 +37,14 @@ export default function ModelForm() {
 
   const fetchData = async () => {
     async function getManufacturers() {
-    const url = "http://localhost:8100/api/manufacturers/";
-    const response = await fetch(url);
-    if (response.ok) {
-        const data = await response.json();
-        setManufacturers(data.manufacturers);
+      const url = "http://localhost:8100/api/manufacturers/";
+      const response = await fetch(url);
+      if (response.ok) {
+          const data = await response.json();
+          setManufacturers(data.manufacturers);
+      }
     }
-}
-getManufacturers();
+    getManufacturers();
   }
 
   const handleSubmit = async (event) => {
@@ -55,9 +53,10 @@ getManufacturers();
     if (response.ok) {
       const newModels = await response.json();
       console.log(newModels);
-      setModelName("");
-      setPicture("");
+      setName("");
+      setPicture_url("");
       setManufacturer("");
+
     }
   };
 
@@ -76,13 +75,13 @@ getManufacturers();
               <form onSubmit={handleSubmit} id="create-model-form">
                 <div className="form-floating mb-3">
                   <input
-                    value={modelName} onChange={handleModelName} placeholder="Model Name" required type="text" name="model_name" id="model_name" className="form-control"
+                    value={name} onChange={handleName} placeholder="name" required type="text" name="name" id="name" className="form-control"
                   />
                   <label htmlFor="model_name">Model Name</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
-                    value={picture} onChange={handlePicture} placeholder="Picture" required type="text" name="picture" id="picture" className="form-control"
+                    value={picture_url} onChange={handlePicture_url} placeholder="picture_url" required type="text" name="picture_url" id="picture_url" className="form-control"
                   />
                   <label htmlFor="picture">Picture URL</label>
                 </div>

@@ -32,14 +32,15 @@ export default function SalesList() {
                 <tbody>
                     {sales.map((salesData) => {
                         return (
-                            <tr key={salesData.employee_id}>
-                                <td>{ salesData.salesperson }</td>
-                                <td>{ salesData.customer }</td>
-                                <td>{ salesData.vin}</td>
+                            <tr key={salesData.id}>
+                                <td>{ salesData.salesperson.employee_id}</td>
+                                <td>{ salesData.salesperson.first_name}</td>
+                                <td>{ salesData.customer.first_name }</td>
+                                <td>{ salesData.automobile.vin}</td>
                                 <td>{ salesData.price }</td>
                             </tr>
                         )
-                    })}
+                    })} 
                 </tbody>
             </table>
         </div>

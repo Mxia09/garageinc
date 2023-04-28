@@ -136,3 +136,5 @@ Within our views we define the following view functions:
 
 Explain your models and integration with the inventory
 microservice, here.
+
+The sales microseverice utilizes and deals with all information regarding administrative work in 

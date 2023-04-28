@@ -18,6 +18,7 @@ class Customer(models.Model):
         return f"{self.first_name} {self.last_name}  {self.address} {self.phone_number}"
 
 class AutomobileVO(models.Model):
+    import_href = models.CharField(max_length=200, unique=True, null=True)
     vin = models.CharField(max_length=50, unique=True) 
     
     def __str__(self):

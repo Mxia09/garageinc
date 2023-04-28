@@ -23,42 +23,17 @@ export default function SalesHistory() {
         }
     }
 
-    async function getSalesPeople() {
-        const url = "http://localhost:8090/api/salespeople/";
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            setSalesPeople(data.salespeople);
-        }
-    }
-    getSalesPeople();
-
     useEffect(() => {
         LoadSales();
-        getSalesPeople();
     }, []);
 
 
     return (
         <div>
             <h1>Salesperson History</h1>
-            <div className="form-floating mb-3">
-                    <select
-                        value={salesPerson} onChange={handleSalesPerson} placeholder="salesPerson" required type="text" name="salesPerson" id="salesPerson" className="form-select">
-                    <option value="">Choose a salesperson</option>
-                    {salesPeople.map((salesperson) => {
-                        return(
-                            <option key={salesperson.id} value={salesperson.id}>
-                                {salesperson.first_name}
-                                </option>
-                        );
-                    })}
-                    </select>
-                    </div>
+
             
             <table className="table table-striped">
-
-                
                 <thead>
                     <tr>
                         <th>Salesperson</th>
@@ -67,18 +42,18 @@ export default function SalesHistory() {
                         <th>Price</th>
                     </tr>
                 </thead>
-                <tbody>
+                 <tbody>
                     {sales.map((salesData) => {
                         return (
-                            <tr key={salesData.employee_id}>
-                                <td>{ salesData.salesperson }</td>
-                                <td>{ salesData.customer }</td>
-                                <td>{ salesData.vin}</td>
+                            <tr key={salesData.id}>
+                                <td>{ salesData.salesperson.employee_id }</td>
+                                <td>{ salesData.customer.first_name }</td>
+                                <td>{ salesData.automobile.vin}</td>
                                 <td>{ salesData.price }</td>
                             </tr>
                         )
                     })}
-                </tbody>
+                </tbody> 
             </table>
         </div>
     );

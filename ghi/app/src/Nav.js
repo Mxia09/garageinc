@@ -170,7 +170,16 @@ function Nav() {
                 aria-current="page"
                 to="/sales/create"
               >
-                Sales Form
+                Add a Sale
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/sales/history"
+              >
+                Salesperson History
               </NavLink>
             </li>
           </ul>
