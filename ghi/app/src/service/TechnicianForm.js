@@ -39,6 +39,8 @@ export const TechnicianForm = () => {
 
     if (response.ok) {
       alert("New Technician Created!");
+    } else {
+      alert("Employee ID has too many digits");
     }
 
     // Reset form
