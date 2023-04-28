@@ -40,7 +40,6 @@ export default function SalesPersonForm() {
     const response = await fetch(salespersonURL, fetchConfig);
     if (response.ok) {
       const newSalesPerson = await response.json();
-      console.log(newSalesPerson);
       setFirstName("");
       setLastName("");
       setEmployeeId("");

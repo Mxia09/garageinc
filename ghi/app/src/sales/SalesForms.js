@@ -86,7 +86,6 @@ export default function SalesForm() {
     
     if (response.ok) {
       const newSales = await response.json();
-      console.log(newSales);
       setAuto("");
       setSalesPerson("");
       setCustomer("");

@@ -42,7 +42,6 @@ export default function ModelForm() {
     const response = await fetch(modelsURL, fetchConfig);
     if (response.ok) {
       const newModel = await response.json();
-      console.log(newModel);
 
       setName("");
       setPicture_url("");
@@ -57,7 +56,6 @@ export default function ModelForm() {
     if (response.ok) {
       const data = await response.json();
       setmanufacturers(data.manufacturers);
-      console.log(manufacturers)
     }
   };
 
