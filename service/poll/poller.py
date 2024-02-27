@@ -15,7 +15,7 @@ from service_rest.models import AutomobileVO
 def get_automobiles():
     # Inventory is located at port 8100
 
-    response = requests.get("http://inventory-api:8000/api/automobiles/")
+    response = requests.get("http://inventory-api:8000/api/automobiles/", timeout=60)
 
     content = json.loads(response.content)
 

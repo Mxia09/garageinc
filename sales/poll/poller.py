@@ -14,7 +14,7 @@ django.setup()
 from sales_rest.models import AutomobileVO
 
 def get_automobiles():
-    response = requests.get("http://inventory-api:8000/api/automobiles/")
+    response = requests.get("http://inventory-api:8000/api/automobiles/", timeout=60)
     content = json.loads(response.content)
     print(AutomobileVO.objects.all)
     for automobile in content["autos"]:
