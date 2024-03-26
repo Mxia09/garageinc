@@ -8,6 +8,11 @@ class Manufacturer(models.Model):
     def get_api_url(self):
         return reverse("api_manufacturer", kwargs={"pk": self.id})
 
+    def __str__(self):
+        model_name = self.__class__.__name__
+        fields_str = ", ".join((f"{field.name}={getattr(self, field.name)}" for field in self._meta.fields))
+        return f"{model_name}({fields_str})"
+
 
 class VehicleModel(models.Model):
     name = models.CharField(max_length=100)
@@ -21,6 +26,11 @@ class VehicleModel(models.Model):
 
     def get_api_url(self):
         return reverse("api_vehicle_model", kwargs={"pk": self.id})
+
+    def __str__(self):
+        model_name = self.__class__.__name__
+        fields_str = ", ".join((f"{field.name}={getattr(self, field.name)}" for field in self._meta.fields))
+        return f"{model_name}({fields_str})"
 
 
 class Automobile(models.Model):
@@ -37,3 +47,8 @@ class Automobile(models.Model):
 
     def get_api_url(self):
         return reverse("api_automobile", kwargs={"vin": self.vin})
+
+    def __str__(self):
+        model_name = self.__class__.__name__
+        fields_str = ", ".join((f"{field.name}={getattr(self, field.name)}" for field in self._meta.fields))
+        return f"{model_name}({fields_str})"
